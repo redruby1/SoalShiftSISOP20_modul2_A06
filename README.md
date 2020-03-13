@@ -6,4 +6,4 @@
 - Cek argumen masih kurang tepat
 
 #### No 2
-- 
+- Ketika di cek daemon jalan, namun tidak mengeluarkan hasil apa - apa
