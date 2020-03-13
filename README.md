@@ -7,3 +7,4 @@
 
 #### No 2
 - Ketika di cek daemon jalan, namun tidak mengeluarkan hasil apa - apa
+- Belum bisa membuat folder secara otomatis
