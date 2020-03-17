@@ -55,7 +55,7 @@ char *argv[] = {"unzip", "jpg.zip", "-d", "modul2/", NULL};
 execv("/usr/bin/unzip", argv);
 ```
 
-- unzip jpg.zip dan memasukkan hasilnya ke directori modul2
+- unzip ``` jpg.zip ``` dan memasukkan hasilnya ke directori  ``` modul2 ```
 
 **c. Diberilah tugas baru yaitu setelah di ekstrak, hasil dari ekstrakan tersebut (di dalam direktori “home/[USER]/modul2/jpg/”) harus dipindahkan sesuai dengan pengelompokan, semua file harus dipindahkan ke “/home/[USER]/modul2/sedaap/” dan semua direktori harus dipindahkan ke “/home/[USER]/modul2/indomie/”**
 
@@ -212,6 +212,6 @@ else {
   }
   ```
 
-- membuat ile coba2.txt juga menggunakan cara yang sama seperti diatas
+- membuat file coba2.txt juga menggunakan cara yang sama seperti diatas
 
 > Full code [soal3.c](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/soal3/soal3.c)
