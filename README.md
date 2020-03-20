@@ -36,10 +36,10 @@ if(arg[1] > 59 || arg[2] > 59 || arg[3] > 23) {
 
 **c. Program hanya menerima 1 config cron**
 ```
-./soal1 \* \* 7 /home/anisa/sisop/soal1_bash.sh
+./soal1 \* 30 6 /home/anisa/sisop/soal1_bash.sh
 ```
 - Contoh diatas merupakan contoh inputan program ``` soal1 ``` yang hanya dapat menerima satu jenis inputan
-- Program diatas akan berjalan setiap menit dan setiap detik pada jam 7
+- Program diatas akan berjalan setiap detik pada 06.30
 
 **d. Program berjalan di background (daemon)**
 ```
@@ -100,6 +100,8 @@ sleep(1);
 
 > Full code [soal1_revisi.c](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/soal1/soal1_revisi.c)
 
+*Menjalankan soal1*
+![soal1](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal1.PNG)
 
 ## Soal 2
 
@@ -155,6 +157,10 @@ execv("/usr/bin/unzip", argv);
 ```
 
 - unzip ``` jpg.zip ``` dan memasukkan hasilnya ke directori  ``` modul2 ```
+
+*Hasil a & b*
+
+![soal3_1](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal3_1.PNG)
 
 **c. Diberilah tugas baru yaitu setelah di ekstrak, hasil dari ekstrakan tersebut (di dalam direktori “home/[USER]/modul2/jpg/”) harus dipindahkan sesuai dengan pengelompokan, semua file harus dipindahkan ke “/home/[USER]/modul2/sedaap/” dan semua direktori harus dipindahkan ke “/home/[USER]/modul2/indomie/”**
 
@@ -313,4 +319,16 @@ else {
 
 - membuat file coba2.txt juga menggunakan cara yang sama seperti diatas
 
+*Hasil c & d*
+
+![soal3_2](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal3_2.PNG)
+
+![soal3_4](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal3_4.PNG)
+
+![soal3_3](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal3_3.PNG)
+
 > Full code [soal3.c](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/soal3/soal3.c)
+
+*Menjalankan soal3*
+
+Menggunakan command ``` ./soal3 ``` pada terminal, ``` soal3 ``` merupakan nama program
