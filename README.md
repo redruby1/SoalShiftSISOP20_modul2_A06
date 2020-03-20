@@ -1,6 +1,105 @@
 # SoalShiftSISOP20_modul2_A06
 
 ## Soal 1
+Buatlah program C yang menyerupai crontab untuk menjalankan script bash dengan ketentuan sebagai berikut:
+
+**a. Program menerima 4 argumen berupa:**
+
+i. Detik: 0-59 atau * (any value)
+
+ii. Menit: 0-59 atau * (any value)
+
+iii. Jam: 0-23 atau * (any value)
+
+iv. Path file .sh
+	
+```
+int main(int argc,char *argv[]) {
+	if(argc == 5) {
+		...
+		...
+	}
+}
+```
+- Program menerima 5 buah inputan, 1 berupa *nama program* dan 4 lainnya berupa *argumen* sesuai ketentuan diatas
+
+**b. Program akan mengeluarkan pesan error jika argumen yang diberikan tidak sesuai**
+```
+if(arg[1] > 59 || arg[2] > 59 || arg[3] > 23) {
+	printf("Argumen tidak valid\n");
+	exit(EXIT_FAILURE);
+}
+```
+- ``` arg[1] ``` menyimpan argumen berupa *detik*
+- ``` arg[2] ``` menyimpan argumen berupa *menit*
+- ``` arg[3] ``` menyimpan argumen berupa *jam*
+
+**c. Program hanya menerima 1 config cron**
+```
+./soal1 \* \* 7 /home/anisa/sisop/soal1_bash.sh
+```
+- Contoh diatas merupakan contoh inputan program ``` soal1 ``` yang hanya dapat menerima satu jenis inputan
+- Program diatas akan berjalan setiap menit dan setiap detik pada jam 7
+
+**d. Program berjalan di background (daemon)**
+```
+pid_t pid, sid, anak;
+pid = fork();
+	
+if(pid < 0) {
+	exit(EXIT_FAILURE);
+}
+	  
+if(pid > 0) {
+	exit(EXIT_SUCCESS);
+}
+
+umask(0);
+	
+sid = setsid();
+if(sid < 0) {
+	exit(EXIT_FAILURE);
+}
+
+if((chdir("/")) < 0) {
+	exit(EXIT_FAILURE);
+}
+	
+close(STDIN_FILENO);
+close(STDOUT_FILENO);
+close(STDERR_FILENO);
+
+while(1) {
+	...
+	...
+}
+```
+- Program menggunakan template daemon
+
+**e. Tidak boleh menggunakan fungsi system()**
+```
+time(&times);
+local = localtime(&times);
+
+hour = local->tm_hour;
+min = local->tm_min;
+sec = local->tm_sec;
+			
+if((sec == arg[1] || arg[1] == -1) && (min == arg[2] || arg[2] == -1) && (hour == arg[3] || arg[3] == -1)) {
+	anak = fork();
+}
+	    	
+if(anak == 0) {
+	char *arg[] = {"bash", argv[4], NULL};
+	execv("/bin/bash", arg);
+}
+
+sleep(1);
+```
+- Program tidak menggunakan fungsi system()
+
+> Full code [soal1_revisi.c](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/soal1/soal1_revisi.c)
+
 
 ## Soal 2
 
