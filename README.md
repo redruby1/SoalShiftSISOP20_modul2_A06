@@ -112,7 +112,7 @@ Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang
 time(&times);
 local = localtime(&times);
 		
-sprintf(name, "%d-%d-%d_%d:%d:%d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec);
+sprintf(name, "%02d-%02d-%02d_%02d:%02d:%02d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec);
 
 if(anak1 == 0) {
 	char *arg[] = {"mkdir", "-p", name, NULL};
@@ -125,7 +125,7 @@ else {
 sleep(30)
 ```
 - ``` local = localtime(&times); ``` untuk mengambil waktu sekarang
-- ``` sprintf(name, "%d-%d-%d_%d:%d:%d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec); ``` untuk memasukkan format nama pada variabel ``` name ```
+- ``` sprintf(name, "%02d-%02d-%02d_%02d:%02d:%02d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec); ``` untuk memasukkan format nama pada variabel ``` name ```
 - ``` char *arg[] = {"mkdir", "-p", name, NULL}; execv("/bin/mkdir", arg); ``` membuat folder dengan format nama sesuai ``` name ```
 - ``` sleep(30) ``` membuat program berjalan setiap 30 detik
 
@@ -144,7 +144,7 @@ if(anak2 == 0) {
 			uk = (t%1000)+100;
 		
 			sprintf(name2, "https://picsum.photos/%un/%un", uk, uk);
-			sprintf(name3, "%d-%d-%d_%d:%d:%d", local2->tm_year+1900, local2->tm_mon+1, local2->tm_mday, local2->tm_hour, local2->tm_min, local2->tm_sec);
+			sprintf(name3, "%02d-%02d-%02d_%02d:%02d:%02d", local2->tm_year+1900, local2->tm_mon+1, local2->tm_mday, local2->tm_hour, local2->tm_min, local2->tm_sec);
 			sprintf(namafile, "%s/%s.jpg", name, name3);
 		
 			char *arg[] = {"wget", "-O", namafile, name2, NULL};
