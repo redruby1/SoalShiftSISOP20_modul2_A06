@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 			time(&times);
 			local = localtime(&times);
 			
-			sprintf(name, "%d-%d-%d_%d:%d:%d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec);
+			sprintf(name, "%02d-%02d-%02d_%02d:%02d:%02d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec);
 			
 			anak1 = fork();
 			
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
 							uk = (t%1000)+100;
 							
 							sprintf(name2, "https://picsum.photos/%un/%un", uk, uk);
-							sprintf(name3, "%d-%d-%d_%d:%d:%d", local2->tm_year+1900, local2->tm_mon+1, local2->tm_mday, local2->tm_hour, local2->tm_min, local2->tm_sec);
+							sprintf(name3, "%02d-%02d-%02d_%02d:%02d:%02d", local2->tm_year+1900, local2->tm_mon+1, local2->tm_mday, local2->tm_hour, local2->tm_min, local2->tm_sec);
 							
 							sprintf(namafile, "%s/%s.jpg", name, name3);
 							
