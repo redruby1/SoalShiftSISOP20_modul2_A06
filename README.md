@@ -104,6 +104,84 @@ sleep(1);
 ![soal1](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/img/soal1.PNG)
 
 ## Soal 2
+Shisoppu mantappu! itulah yang selalu dikatakan Kiwa setiap hari karena sekarang dia merasa sudah jago materi sisop. Karena merasa jago, suatu hari Kiwa iseng membuat sebuah program
+
+**a. Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat sebuah  program  C  yang  per  30  detik membuat  sebuah  folder  dengan  nama timestamp [YYYY-mm-dd_HH:ii:ss]**
+
+```
+time(&times);
+local = localtime(&times);
+		
+sprintf(name, "%d-%d-%d_%d:%d:%d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec);
+
+if(anak1 == 0) {
+	char *arg[] = {"mkdir", "-p", name, NULL};
+	execv("/bin/mkdir", arg);
+}
+else {
+	...
+	...
+}
+sleep(30)
+```
+- ``` local = localtime(&times); ``` untuk mengambil waktu sekarang
+- ``` sprintf(name, "%d-%d-%d_%d:%d:%d", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec); ``` untuk memasukkan format nama pada variabel ``` name ```
+- ``` char *arg[] = {"mkdir", "-p", name, NULL}; execv("/bin/mkdir", arg); ``` membuat folder dengan format nama sesuai ``` name ```
+- ``` sleep(30) ``` membuat program berjalan setiap 30 detik
+
+**b. Tiap-tiap  folder  lalu  diisi  dengan  20  gambar  yang  di  download  dari https://picsum.photos/,  dimana  tiap  gambar  di  download  setiap  5  detik.  Tiap gambar berbentuk persegi dengan ukuran  (t%1000)+100  piksel dimana t adalah detik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp [YYYYmm-dd_HH:ii:ss]**
+```
+if(anak2 == 0) {
+	for(i=0; i<20; i++) {
+	pid_t unduh;
+	unduh = fork();
+					
+	if(unduh == 0) {
+			time(&times);
+			local2 = localtime(&times);
+			
+			t = (unsigned)time(NULL);
+			uk = (t%1000)+100;
+		
+			sprintf(name2, "https://picsum.photos/%un/%un", uk, uk);
+			sprintf(name3, "%d-%d-%d_%d:%d:%d", local2->tm_year+1900, local2->tm_mon+1, local2->tm_mday, local2->tm_hour, local2->tm_min, local2->tm_sec);
+			sprintf(namafile, "%s/%s.jpg", name, name3);
+		
+			char *arg[] = {"wget", "-O", namafile, name2, NULL};
+			execv("/usr/bin/wget", arg);
+		}
+		sleep(5);
+	}
+	...
+	...
+}
+```
+- ``` for(i=0; i<20; i++) ``` untuk loop sebanyak 20 kali, agar bisa download 20 gambar
+- ``` local2 = localtime(&times); ``` untuk mengambil waktu sekarang
+- ``` t = (unsigned)time(NULL); ``` untuk mengambil unix dari timestamp
+- ``` uk = (t%1000)+100; ``` untuk menghitung ukuran gambar
+- ``` sprintf(name2, "https://picsum.photos/%un/%un", uk, uk); ``` untuk menyimpan format nama
+- ``` char *arg[] = {"wget", "-O", namafile, name2, NULL}; execv("/usr/bin/wget", arg); ``` untuk download gambar dari picsum photo
+
+**c. Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan folder akan di delete(sehingga hanya menyisakan .zip)**
+```
+if(anak3 == 0) {
+	char zip[30];
+	sprintf(zip, "%s.zip", name);
+					
+	char *arg[] = {"zip", "-rm", zip, name, NULL};
+	execv("/usr/bin/zip", arg);
+}
+```
+- ``` sprintf(zip, "%s.zip", name); ``` untuk menyimpan format nama folder zip
+- ``` char *arg[] = {"zip", "-rm", zip, name, NULL}; execv("/usr/bin/zip", arg); ``` untuk mengzip folder dan ``` -rm ``` untuk menghapus folder yang bukan zip
+
+**d. Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut mengenerate  sebuah  program  "killer" yang  siap  di  run(executable)  untuk menterminasi  semua  operasi program  tersebut.  Setelah  di  run,  program  yang menterminasi ini lalu akan mendelete dirinya sendiri**
+
+
+**e. Kiwa  menambahkan  bahwa  program  utama  bisa  dirun  dalam  dua  mode,  yaitu MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen -b.  Ketika  dijalankan  dalam  MODE_A,  program  utama  akan  langsung menghentikan  semua operasinya  ketika  program  killer  dijalankan.  Untuk MODE_B,  ketika  program  killer  dijalankan,  program  utama akan  berhenti  tapi membiarkan proses di setiap folder yang masih berjalan sampai selesai (semua folder terisi gambar, terzip lalu di delete)**
+
+> Full code [soal2_revisi.c](https://github.com/redruby1/SoalShiftSISOP20_modul2_A06/blob/master/soal2/soal2_revisi.c)
 
 ## Soal 3
 Jaya  adalah  seorang  programmer  handal  mahasiswa  informatika.  Suatu  hari  dia memperoleh tugas yang banyak dan berbeda tetapi harus dikerjakan secara bersamaan (multiprocessing).
